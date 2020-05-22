@@ -1,7 +1,13 @@
+from PIL.ImImagePlugin import number
 from django.db import models
+from django.db.models import Model
 
 
 # Create your models here.
+
+class GeeksModel(Model):
+    geeks_field = models.IntegerField()
+
 
 class Genre(models.Model):
     """
@@ -116,3 +122,23 @@ class Author(models.Model):
         """
         return '%s, %s' % (self.last_name, self.first_name)
 
+
+# Organización,Número de documento, Fecha, Tercero, Total, Moneda Estado
+class Factura(models.Model):
+    organizacion = models.CharField(max_length=60)
+    numerodocumento = models.IntegerField()
+    fecha = models.DateField(null=False, blank=True)
+    tercero = models.CharField(max_length=60)
+    total = models.FloatField()
+    moneda = models.CharField(max_length=15)
+    estado = models.CharField(max_length=20)
+
+
+# linea factura, nombre producto, cantidad, precio unitario, IVA, total
+class LineaFactura(models.Model):
+    lineafactura=models.IntegerField()
+    nombreproducto=models.CharField(max_length=60)
+    cantidad=models.IntegerField()
+    preciounitario=models.FloatField()
+    IVA=models.IntegerField()
+    totalproducto=models.FloatField()
